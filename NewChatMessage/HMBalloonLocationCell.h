@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HMBalloonActionCell.h"
 
-@interface HMBalloonLocationCell : UICollectionViewCell
+@interface HMBalloonLocationCell : HMBalloonActionCell
 
 @end

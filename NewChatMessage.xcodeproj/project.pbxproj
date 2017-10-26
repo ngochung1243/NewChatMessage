@@ -16,7 +16,18 @@
 		8403B5CE1F9DAD92005B804D /* HMBalloonVideoCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8403B5CD1F9DAD92005B804D /* HMBalloonVideoCell.mm */; };
 		8403B5D11F9DADDA005B804D /* HMBalloonRecordCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8403B5D01F9DADDA005B804D /* HMBalloonRecordCell.mm */; };
 		8403B5D41F9DD861005B804D /* ChatContentSectionController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8403B5D31F9DD861005B804D /* ChatContentSectionController.mm */; };
+		8411300B1F9F508600CE6F12 /* HMBalloonActionCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8411300A1F9F508600CE6F12 /* HMBalloonActionCell.mm */; };
 		841A69CA1F9F445B009A0D21 /* HMBalloonLocationCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 841A69C91F9F445B009A0D21 /* HMBalloonLocationCell.mm */; };
+		84821FBC1FA037800004A5ED /* HMNotificationCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84821FBB1FA037800004A5ED /* HMNotificationCell.mm */; };
+		84821FBF1FA089050004A5ED /* HMEmotion.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84821FBE1FA089050004A5ED /* HMEmotion.mm */; };
+		84821FC21FA08B950004A5ED /* HMEmotionBar.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84821FC11FA08B950004A5ED /* HMEmotionBar.mm */; };
+		84821FC41FA099040004A5ED /* iMomeetArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84821FC31FA099040004A5ED /* iMomeetArray.plist */; };
+		84821FC71FA09CD00004A5ED /* HMEmotionCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84821FC61FA09CD00004A5ED /* HMEmotionCell.mm */; };
+		84821FCD1FA18A2D0004A5ED /* HMFooterView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84821FCC1FA18A2D0004A5ED /* HMFooterView.mm */; };
+		84821FD51FA18DF60004A5ED /* HMExtraMessageBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84821FD41FA18DF60004A5ED /* HMExtraMessageBar.m */; };
+		84821FD81FA1952D0004A5ED /* NgnMediaUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 84821FD71FA1952D0004A5ED /* NgnMediaUtils.m */; };
+		84821FDA1FA196630004A5ED /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84821FD91FA196630004A5ED /* AVFoundation.framework */; };
+		84821FDC1FA196780004A5ED /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84821FDB1FA196780004A5ED /* CoreMedia.framework */; };
 		84D061D41F9A0E1200DEB43A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D061D31F9A0E1200DEB43A /* main.m */; };
 		84D061D71F9A0E1200DEB43A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D061D61F9A0E1200DEB43A /* AppDelegate.m */; };
 		84D061DD1F9A0E1200DEB43A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D061DB1F9A0E1200DEB43A /* Main.storyboard */; };
@@ -70,8 +81,27 @@
 		8403B5D01F9DADDA005B804D /* HMBalloonRecordCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HMBalloonRecordCell.mm; sourceTree = "<group>"; };
 		8403B5D21F9DD861005B804D /* ChatContentSectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatContentSectionController.h; sourceTree = "<group>"; };
 		8403B5D31F9DD861005B804D /* ChatContentSectionController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChatContentSectionController.mm; sourceTree = "<group>"; };
+		841130091F9F508600CE6F12 /* HMBalloonActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMBalloonActionCell.h; sourceTree = "<group>"; };
+		8411300A1F9F508600CE6F12 /* HMBalloonActionCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HMBalloonActionCell.mm; sourceTree = "<group>"; };
 		841A69C81F9F445B009A0D21 /* HMBalloonLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMBalloonLocationCell.h; sourceTree = "<group>"; };
 		841A69C91F9F445B009A0D21 /* HMBalloonLocationCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HMBalloonLocationCell.mm; sourceTree = "<group>"; };
+		84821FBA1FA037800004A5ED /* HMNotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMNotificationCell.h; sourceTree = "<group>"; };
+		84821FBB1FA037800004A5ED /* HMNotificationCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HMNotificationCell.mm; sourceTree = "<group>"; };
+		84821FBD1FA089050004A5ED /* HMEmotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMEmotion.h; sourceTree = "<group>"; };
+		84821FBE1FA089050004A5ED /* HMEmotion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HMEmotion.mm; sourceTree = "<group>"; };
+		84821FC01FA08B950004A5ED /* HMEmotionBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMEmotionBar.h; sourceTree = "<group>"; };
+		84821FC11FA08B950004A5ED /* HMEmotionBar.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HMEmotionBar.mm; sourceTree = "<group>"; };
+		84821FC31FA099040004A5ED /* iMomeetArray.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = iMomeetArray.plist; sourceTree = "<group>"; };
+		84821FC51FA09CD00004A5ED /* HMEmotionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMEmotionCell.h; sourceTree = "<group>"; };
+		84821FC61FA09CD00004A5ED /* HMEmotionCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HMEmotionCell.mm; sourceTree = "<group>"; };
+		84821FCB1FA18A2D0004A5ED /* HMFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMFooterView.h; sourceTree = "<group>"; };
+		84821FCC1FA18A2D0004A5ED /* HMFooterView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HMFooterView.mm; sourceTree = "<group>"; };
+		84821FD31FA18DF60004A5ED /* HMExtraMessageBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMExtraMessageBar.h; sourceTree = "<group>"; };
+		84821FD41FA18DF60004A5ED /* HMExtraMessageBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMExtraMessageBar.m; sourceTree = "<group>"; };
+		84821FD61FA1952D0004A5ED /* NgnMediaUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NgnMediaUtils.h; sourceTree = "<group>"; };
+		84821FD71FA1952D0004A5ED /* NgnMediaUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NgnMediaUtils.m; sourceTree = "<group>"; };
+		84821FD91FA196630004A5ED /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		84821FDB1FA196780004A5ED /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		84D061CF1F9A0E1200DEB43A /* NewChatMessage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewChatMessage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D061D31F9A0E1200DEB43A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84D061D51F9A0E1200DEB43A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -105,6 +135,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84821FDC1FA196780004A5ED /* CoreMedia.framework in Frameworks */,
+				84821FDA1FA196630004A5ED /* AVFoundation.framework in Frameworks */,
 				8403B5C21F9DA995005B804D /* MobileCoreServices.framework in Frameworks */,
 				83F6E6658732B6CDAEDB8803 /* libPods-NewChatMessage.a in Frameworks */,
 			);
@@ -142,6 +174,81 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		84821FCE1FA18D680004A5ED /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				84D062051F9A0E3500DEB43A /* NewChatViewController.h */,
+				84D062061F9A0E3500DEB43A /* NewChatViewController.mm */,
+				8403B5D21F9DD861005B804D /* ChatContentSectionController.h */,
+				8403B5D31F9DD861005B804D /* ChatContentSectionController.mm */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		84821FCF1FA18D730004A5ED /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84D062081F9A0EB000DEB43A /* HMNavigationBar.h */,
+				84D062091F9A0EB000DEB43A /* HMNavigationBar.mm */,
+				84821FCB1FA18A2D0004A5ED /* HMFooterView.h */,
+				84821FCC1FA18A2D0004A5ED /* HMFooterView.mm */,
+				84D68E381F9BA34C00E939F7 /* HMAudioRecordView.h */,
+				84D68E391F9BA34C00E939F7 /* HMAudioRecordView.mm */,
+				84D68E301F9B0D2C00E939F7 /* HMActionBar.h */,
+				84D68E311F9B0D2C00E939F7 /* HMActionBar.mm */,
+				84821FC01FA08B950004A5ED /* HMEmotionBar.h */,
+				84821FC11FA08B950004A5ED /* HMEmotionBar.mm */,
+				84821FD31FA18DF60004A5ED /* HMExtraMessageBar.h */,
+				84821FD41FA18DF60004A5ED /* HMExtraMessageBar.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		84821FD01FA18D8C0004A5ED /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				84821FC51FA09CD00004A5ED /* HMEmotionCell.h */,
+				84821FC61FA09CD00004A5ED /* HMEmotionCell.mm */,
+				8403B5C31F9DAD3B005B804D /* HMBalloonBaseCell.h */,
+				8403B5C41F9DAD3B005B804D /* HMBalloonBaseCell.mm */,
+				8403B5C91F9DAD66005B804D /* HMBalloonImageCell.h */,
+				8403B5CA1F9DAD66005B804D /* HMBalloonImageCell.mm */,
+				8403B5CC1F9DAD92005B804D /* HMBalloonVideoCell.h */,
+				8403B5CD1F9DAD92005B804D /* HMBalloonVideoCell.mm */,
+				841130091F9F508600CE6F12 /* HMBalloonActionCell.h */,
+				8411300A1F9F508600CE6F12 /* HMBalloonActionCell.mm */,
+				8403B5CF1F9DADDA005B804D /* HMBalloonRecordCell.h */,
+				8403B5D01F9DADDA005B804D /* HMBalloonRecordCell.mm */,
+				841A69C81F9F445B009A0D21 /* HMBalloonLocationCell.h */,
+				841A69C91F9F445B009A0D21 /* HMBalloonLocationCell.mm */,
+				84821FBA1FA037800004A5ED /* HMNotificationCell.h */,
+				84821FBB1FA037800004A5ED /* HMNotificationCell.mm */,
+				8403B5B91F9D8B25005B804D /* HMActionCell.h */,
+				8403B5BA1F9D8B26005B804D /* HMActionCell.mm */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		84821FD11FA18DB10004A5ED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84821FBD1FA089050004A5ED /* HMEmotion.h */,
+				84821FBE1FA089050004A5ED /* HMEmotion.mm */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		84821FD21FA18DC10004A5ED /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				84D68E3B1F9CF07200E939F7 /* NgnDateTimeUtils.h */,
+				84D68E3C1F9CF07200E939F7 /* NgnDateTimeUtils.mm */,
+				84821FD61FA1952D0004A5ED /* NgnMediaUtils.h */,
+				84821FD71FA1952D0004A5ED /* NgnMediaUtils.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		84D061C61F9A0E1200DEB43A = {
 			isa = PBXGroup;
 			children = (
@@ -167,36 +274,11 @@
 		84D061D11F9A0E1200DEB43A /* NewChatMessage */ = {
 			isa = PBXGroup;
 			children = (
-				84D061D51F9A0E1200DEB43A /* AppDelegate.h */,
-				84D061D61F9A0E1200DEB43A /* AppDelegate.m */,
-				84D062051F9A0E3500DEB43A /* NewChatViewController.h */,
-				84D062061F9A0E3500DEB43A /* NewChatViewController.mm */,
-				84D062081F9A0EB000DEB43A /* HMNavigationBar.h */,
-				84D062091F9A0EB000DEB43A /* HMNavigationBar.mm */,
-				84D061DB1F9A0E1200DEB43A /* Main.storyboard */,
-				84D061E01F9A0E1200DEB43A /* LaunchScreen.storyboard */,
-				84D061E31F9A0E1200DEB43A /* Info.plist */,
-				8403B5C31F9DAD3B005B804D /* HMBalloonBaseCell.h */,
-				8403B5C41F9DAD3B005B804D /* HMBalloonBaseCell.mm */,
-				8403B5C91F9DAD66005B804D /* HMBalloonImageCell.h */,
-				8403B5CA1F9DAD66005B804D /* HMBalloonImageCell.mm */,
-				8403B5CC1F9DAD92005B804D /* HMBalloonVideoCell.h */,
-				8403B5CD1F9DAD92005B804D /* HMBalloonVideoCell.mm */,
-				8403B5CF1F9DADDA005B804D /* HMBalloonRecordCell.h */,
-				8403B5D01F9DADDA005B804D /* HMBalloonRecordCell.mm */,
-				841A69C81F9F445B009A0D21 /* HMBalloonLocationCell.h */,
-				841A69C91F9F445B009A0D21 /* HMBalloonLocationCell.mm */,
-				84D68E301F9B0D2C00E939F7 /* HMActionBar.h */,
-				84D68E311F9B0D2C00E939F7 /* HMActionBar.mm */,
-				8403B5B91F9D8B25005B804D /* HMActionCell.h */,
-				8403B5BA1F9D8B26005B804D /* HMActionCell.mm */,
-				84D68E381F9BA34C00E939F7 /* HMAudioRecordView.h */,
-				84D68E391F9BA34C00E939F7 /* HMAudioRecordView.mm */,
-				8403B5D21F9DD861005B804D /* ChatContentSectionController.h */,
-				8403B5D31F9DD861005B804D /* ChatContentSectionController.mm */,
-				84D68E3B1F9CF07200E939F7 /* NgnDateTimeUtils.h */,
-				84D68E3C1F9CF07200E939F7 /* NgnDateTimeUtils.mm */,
-				84D061DE1F9A0E1200DEB43A /* Assets.xcassets */,
+				84821FCE1FA18D680004A5ED /* Controller */,
+				84821FCF1FA18D730004A5ED /* View */,
+				84821FD01FA18D8C0004A5ED /* Cell */,
+				84821FD11FA18DB10004A5ED /* Model */,
+				84821FD21FA18DC10004A5ED /* Utils */,
 				84D061D21F9A0E1200DEB43A /* Supporting Files */,
 			);
 			path = NewChatMessage;
@@ -205,6 +287,13 @@
 		84D061D21F9A0E1200DEB43A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				84D061DE1F9A0E1200DEB43A /* Assets.xcassets */,
+				84D061D51F9A0E1200DEB43A /* AppDelegate.h */,
+				84D061D61F9A0E1200DEB43A /* AppDelegate.m */,
+				84D061DB1F9A0E1200DEB43A /* Main.storyboard */,
+				84D061E01F9A0E1200DEB43A /* LaunchScreen.storyboard */,
+				84D061E31F9A0E1200DEB43A /* Info.plist */,
+				84821FC31FA099040004A5ED /* iMomeetArray.plist */,
 				84D061D31F9A0E1200DEB43A /* main.m */,
 			);
 			name = "Supporting Files";
@@ -231,6 +320,8 @@
 		8DF74F5381A2EE227EC113DD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84821FDB1FA196780004A5ED /* CoreMedia.framework */,
+				84821FD91FA196630004A5ED /* AVFoundation.framework */,
 				8403B5C11F9DA995005B804D /* MobileCoreServices.framework */,
 				765E3D8B789EC08046D08099 /* libPods-NewChatMessage.a */,
 				17E7687313D06821C6FFC9A5 /* libPods-NewChatMessageTests.a */,
@@ -360,6 +451,7 @@
 				84D061E21F9A0E1200DEB43A /* LaunchScreen.storyboard in Resources */,
 				84D061DF1F9A0E1200DEB43A /* Assets.xcassets in Resources */,
 				84D061DD1F9A0E1200DEB43A /* Main.storyboard in Resources */,
+				84821FC41FA099040004A5ED /* iMomeetArray.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,19 +626,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84821FBF1FA089050004A5ED /* HMEmotion.mm in Sources */,
 				8403B5CB1F9DAD66005B804D /* HMBalloonImageCell.mm in Sources */,
 				84D062071F9A0E3500DEB43A /* NewChatViewController.mm in Sources */,
 				84D061D71F9A0E1200DEB43A /* AppDelegate.m in Sources */,
+				84821FCD1FA18A2D0004A5ED /* HMFooterView.mm in Sources */,
 				84D68E321F9B0D2C00E939F7 /* HMActionBar.mm in Sources */,
+				84821FD51FA18DF60004A5ED /* HMExtraMessageBar.m in Sources */,
 				84D68E3A1F9BA34C00E939F7 /* HMAudioRecordView.mm in Sources */,
+				84821FD81FA1952D0004A5ED /* NgnMediaUtils.m in Sources */,
 				8403B5D41F9DD861005B804D /* ChatContentSectionController.mm in Sources */,
 				8403B5C51F9DAD3B005B804D /* HMBalloonBaseCell.mm in Sources */,
 				8403B5CE1F9DAD92005B804D /* HMBalloonVideoCell.mm in Sources */,
 				84D0620A1F9A0EB000DEB43A /* HMNavigationBar.mm in Sources */,
+				84821FC21FA08B950004A5ED /* HMEmotionBar.mm in Sources */,
 				841A69CA1F9F445B009A0D21 /* HMBalloonLocationCell.mm in Sources */,
+				8411300B1F9F508600CE6F12 /* HMBalloonActionCell.mm in Sources */,
+				84821FBC1FA037800004A5ED /* HMNotificationCell.mm in Sources */,
 				84D061D41F9A0E1200DEB43A /* main.m in Sources */,
 				8403B5D11F9DADDA005B804D /* HMBalloonRecordCell.mm in Sources */,
 				8403B5BB1F9D8B26005B804D /* HMActionCell.mm in Sources */,
+				84821FC71FA09CD00004A5ED /* HMEmotionCell.mm in Sources */,
 				84D68E3D1F9CF07200E939F7 /* NgnDateTimeUtils.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

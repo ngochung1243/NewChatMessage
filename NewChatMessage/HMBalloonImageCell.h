@@ -11,7 +11,11 @@
 
 @interface HMBalloonImageCell : HMBalloonBaseCell {
     CGSize imageSize;
+    int count;
 }
 
-@property(strong, nonatomic) UIButton *imageMessageView;
+@property(strong, nonatomic) UIImageView *imageMessageView;
+@property(strong, nonatomic) UIButton *downloadButton;
+@property(strong, nonatomic) UILabel *progressLabel;
+
 @end

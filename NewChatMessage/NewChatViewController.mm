@@ -9,11 +9,11 @@
 #import "NewChatViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "ChatContentSectionController.h"
-
-#define FooterButtonSize CGSizeMake(30, 30)
+#import "NgnMediaUtils.h"
 
 #define DistanceToCancelRecordView [[UIScreen mainScreen] bounds].size.width / 2
-#define ActionBarHeight 200
+#define MenuBarHeight 220
+
 
 @implementation NewChatViewController
 
@@ -23,9 +23,27 @@
     //---LAYOUT UI---
     //layout navigation bar
     _navigationBar = [[HMNavigationBar alloc] initInView:self.view];
-    _footerView = [[UIView alloc] init];
-    _footerView.backgroundColor = UIColor.lightGrayColor;
-    [self.view addSubview:_footerView];
+    
+    //layout extra view
+    _extraView = [[HMExtraMessageBar alloc] init];
+    [_extraView.closeButton addTarget:self action:@selector(closeExtraView) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_extraView];
+    [_extraView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.bottom.equalTo(self.view);
+        make.height.mas_equalTo(0);
+    }];
+    
+    //layout emotion view
+    _emotionView = [[HMEmotionBar alloc] init];
+    [self.view addSubview:_emotionView];
+    [_emotionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.width.mas_equalTo(0);
+        make.height.mas_equalTo(MenuBarHeight);
+    }];
     
     //layout action view
     _actionView = [[HMActionBar alloc] init];
@@ -33,57 +51,28 @@
     [self.view addSubview:_actionView];
     [_actionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view);
-        make.right.equalTo(self.view);
+        make.right.equalTo(_emotionView.mas_left);
         make.bottom.equalTo(self.view);
         make.height.mas_equalTo(0);
     }];
     
-    _actionButton = [[UIButton alloc] init];
-    [_actionButton setImage:[UIImage imageNamed:@"icon_chat_action_bar_add_light"] forState:UIControlStateNormal];
-    [_actionButton addTarget:self action:@selector(showMenuBarAction) forControlEvents:UIControlEventTouchUpInside];
-    _actionButton.backgroundColor = UIColor.clearColor;
-    [_footerView addSubview:_actionButton];
-    [_actionButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_footerView).offset(10);
-        make.centerY.equalTo(_footerView);
-        make.size.mas_equalTo(FooterButtonSize);
-    }];
-    
-    _sendButton = [[UIButton alloc] init];
-    [_sendButton addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
-    UILongPressGestureRecognizer *longGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleSendRecord:)];
-    [_sendButton addGestureRecognizer:longGesture];
-    [_sendButton setImage:[UIImage imageNamed:@"icon_chat_action_bar_voice"] forState:UIControlStateNormal];
-    _sendButton.backgroundColor = UIColor.clearColor;
-    [_footerView addSubview:_sendButton];
-    [_sendButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(_footerView).offset(-10);
-        make.centerY.equalTo(_footerView);
-        make.size.mas_equalTo(FooterButtonSize);
-    }];
-    
-    _chatTextView = [[UITextView alloc] init];
-    _chatTextView.backgroundColor = UIColor.whiteColor;
-    _chatTextView.layer.cornerRadius = 5;
-    _chatTextView.delegate = self;
-    _chatTextView.font = [UIFont systemFontOfSize:13];
-    [_footerView addSubview:_chatTextView];
-    [_chatTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_actionButton.mas_right).offset(15);
-        make.right.equalTo(_sendButton.mas_left).offset(-15);
-        make.bottom.equalTo(_footerView).offset(-10);
-        make.height.mas_equalTo(30).priorityMedium();
-        make.height.mas_greaterThanOrEqualTo(30).priorityHigh();
-        make.height.mas_lessThanOrEqualTo(60).priorityHigh();
-    }];
-    
     //layout footer view
+    _footerView = [[HMFooterView alloc] init];
+    _footerView.backgroundColor = UIColor.lightGrayColor;
+    [self.view addSubview:_footerView];
     [_footerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
-        make.bottom.equalTo(_actionView.mas_top);
-        make.top.equalTo(_chatTextView).offset(-10);
+        footerViewBottomConstraint = make.bottom.mas_equalTo(_actionView.mas_top);
+        make.top.equalTo(_footerView.chatTextView).offset(-10);
     }];
+    
+    [_footerView.sendButton addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
+    UILongPressGestureRecognizer *longGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleSendRecord:)];
+    [_footerView.sendButton addGestureRecognizer:longGesture];
+    
+    [_footerView.actionButton addTarget:self action:@selector(showMenuBarAction) forControlEvents:UIControlEventTouchUpInside];
+    //*****
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.estimatedItemSize = CGSizeMake(1, 1);
@@ -131,9 +120,21 @@
 }
 
 - (void)showMenuBarAction {
+    if (isShowingEmotionBar) {
+        isShowingEmotionBar = NO;
+        [_emotionView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(0);
+        }];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.view layoutIfNeeded];
+            _footerView.actionButton.transform = CGAffineTransformIdentity;
+        }];
+        return;
+    }
     if (!isShowingActionBar) {
         [_actionView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(ActionBarHeight);
+            make.height.mas_equalTo(MenuBarHeight);
         }];
     } else {
         [_actionView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -150,15 +151,52 @@
     isShowingActionBar = !isShowingActionBar;
 }
 
+#pragma mark - Extra View Display
+- (void)showExtraViewWithImage:(UIImage *)image isVideo:(BOOL)isVideo {
+    isShowingActionBar = NO;
+    [_actionView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(0);
+    }];
+    
+    [_extraView setExtraImage:image isVideo:isVideo];
+    [_extraView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(MenuBarHeight);
+    }];
+    
+    [footerViewBottomConstraint uninstall];
+    [_footerView mas_updateConstraints:^(MASConstraintMaker *make) {
+        footerViewBottomConstraint = make.bottom.mas_equalTo(_extraView.mas_top);
+    }];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)closeExtraView {
+    [_extraView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(0);
+    }];
+    
+    [footerViewBottomConstraint uninstall];
+    [_footerView mas_updateConstraints:^(MASConstraintMaker *make) {
+        footerViewBottomConstraint = make.bottom.mas_equalTo(_actionView.mas_top);
+    }];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
 #pragma mark - Message & Record
 - (void)sendMessage {
-    if ([_chatTextView.text isEqualToString:@""]) {
+    if ([_footerView.chatTextView.text isEqualToString:@""]) {
         return;
     }
 }
 
 - (void)handleSendRecord:(UILongPressGestureRecognizer *)gesture {
-    if (![_chatTextView.text isEqualToString:@""]) {
+    if (![_footerView.chatTextView.text isEqualToString:@""]) {
         return;
     }
     switch (gesture.state) {
@@ -180,7 +218,7 @@
             }
             
             CGPoint targetPoint = [gesture locationInView:self.view];
-            CGPoint originPoint = _sendButton.frame.origin;
+            CGPoint originPoint = _footerView.sendButton.frame.origin;
             CGFloat ratio = (targetPoint.x - DistanceToCancelRecordView) / (originPoint.x - DistanceToCancelRecordView);
             _recordView.alpha = ratio;
             if (ratio <= 0.1f) {
@@ -215,9 +253,18 @@
     NSLog(@"Select image");
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
-    //        [[UIApplication sharedApplication] setStatusBarHidden:TRUE];
     imagePickerController.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
     imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePickerController.allowsEditing = NO;
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+
+- (void)didSelectCaptureButton {
+    NSLog(@"Select camera");
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    imagePickerController.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
     imagePickerController.allowsEditing = NO;
     [self presentViewController:imagePickerController animated:YES completion:nil];
 }
@@ -226,7 +273,6 @@
     NSLog(@"Select video");
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
-    //        [[UIApplication sharedApplication] setStatusBarHidden:TRUE];
     imagePickerController.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
     imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     imagePickerController.allowsEditing = NO;
@@ -235,6 +281,14 @@
 
 - (void)didSelectEmotionButton {
     NSLog(@"Select emotion");
+    isShowingEmotionBar = YES;
+    [_emotionView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(self.view.frame.size.width);
+    }];
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.view layoutIfNeeded];
+        _footerView.actionButton.transform = CGAffineTransformMakeRotation(M_PI_4);
+    }];
 }
 
 - (void)didSelectLocationButton {
@@ -264,18 +318,21 @@
     return nil;
 }
 
-#pragma mark - UITextViewDelegate
-- (void)textViewDidChange:(UITextView *)textView {
-    NSLog(@"%f", _chatTextView.contentSize.height);
-    [_chatTextView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(_chatTextView.contentSize.height).priorityMedium();
-    }];
-}
-
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     NSLog(@"Finish picking");
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        NSString* type = [info objectForKey:UIImagePickerControllerMediaType];
+        if ([type isEqualToString: (NSString*)kUTTypeImage] ) {
+            UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+            [self showExtraViewWithImage:image isVideo:NO];
+        }
+        else if ([type isEqualToString: (NSString*)kUTTypeMovie] ) {
+            NSURL *videoUrl = [info objectForKey:UIImagePickerControllerMediaURL];
+            UIImage *image = [NgnMediaUtils getImageFromVideo:videoUrl atTime:1];
+            [self showExtraViewWithImage:image isVideo:YES];
+        }
+    }];
 }
 @end
 

@@ -11,6 +11,7 @@
 @protocol HMActionBarDelegate <NSObject>
 
 - (void)didSelectImageButton;
+- (void)didSelectCaptureButton;
 - (void)didSelectVideoButton;
 - (void)didSelectEmotionButton;
 - (void)didSelectLocationButton;
@@ -25,6 +26,7 @@
 
 @property(weak, nonatomic) id<HMActionBarDelegate> delegate;
 @property(nonatomic) BOOL imageButtonEnable;
+@property(nonatomic) BOOL captureButtonEnable;
 @property(nonatomic) BOOL videoButtonEnable;
 @property(nonatomic) BOOL emotionButtonEnable;
 @property(nonatomic) BOOL locationButtonEnable;

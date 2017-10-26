@@ -10,14 +10,15 @@
 #import "HMActionCell.h"
 #import "Masonry.h"
 
-#define ImageButtonIndex 0
-#define VideoButtonIndex 1
-#define EmotionButtonIndex 2
-#define LocationButtonIndex 3
-#define AudioCallButtonIndex 4
-#define VideoCallButtonIndex 5
+#define ImageButtonIndex        0
+#define CaptureButtonIndex      1
+#define VideoButtonIndex        2
+#define EmotionButtonIndex      3
+#define LocationButtonIndex     4
+#define AudioCallButtonIndex    5
+#define VideoCallButtonIndex    6
 
-#define NumberOfButton 6
+#define NumberOfButton          7
 
 #define ButtonSize CGSizeMake(60, 80)
 
@@ -62,29 +63,41 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HMActionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[HMActionCell description] forIndexPath:indexPath];
+    [cell.imageView removeTarget:nil action:nil forControlEvents:UIControlEventAllEvents];
     switch (indexPath.item) {
         case ImageButtonIndex:
-            cell.imageView.image = [UIImage imageNamed:@"icon_menu_chat_action_photo"];
+            [cell.imageView setImage:[UIImage imageNamed:@"icon_menu_chat_action_photo"] forState:UIControlStateNormal];
+            [cell.imageView addTarget:self action:@selector(imageCellClick) forControlEvents:UIControlEventTouchUpInside];
             cell.titleLabel.text = NSLocalizedString(@"Photos", nil);
             break;
+        case CaptureButtonIndex:
+            [cell.imageView setImage:[UIImage imageNamed:@"ic_menu_chat_action_camera"] forState:UIControlStateNormal];
+            [cell.imageView addTarget:self action:@selector(captureCellClick) forControlEvents:UIControlEventTouchUpInside];
+            cell.titleLabel.text = NSLocalizedString(@"Camera", nil);
+            break;
         case VideoButtonIndex:
-            cell.imageView.image = [UIImage imageNamed:@"icon_menu_chat_action_video"];
+            [cell.imageView setImage:[UIImage imageNamed:@"icon_menu_chat_action_video"] forState:UIControlStateNormal];
+            [cell.imageView addTarget:self action:@selector(videoCellClick) forControlEvents:UIControlEventTouchUpInside];
             cell.titleLabel.text = NSLocalizedString(@"Videos", nil);
             break;
         case EmotionButtonIndex:
-            cell.imageView.image = [UIImage imageNamed:@"icon_menu_chat_action_emoji"];
+            [cell.imageView setImage:[UIImage imageNamed:@"icon_menu_chat_action_emoji"] forState:UIControlStateNormal];
+            [cell.imageView addTarget:self action:@selector(emojiCellClick) forControlEvents:UIControlEventTouchUpInside];
             cell.titleLabel.text = NSLocalizedString(@"Emotion", nil);
             break;
         case LocationButtonIndex:
-            cell.imageView.image = [UIImage imageNamed:@"icon_menu_chat_action_location"];
+            [cell.imageView setImage:[UIImage imageNamed:@"icon_menu_chat_action_location"] forState:UIControlStateNormal];
+            [cell.imageView addTarget:self action:@selector(locationCellClick) forControlEvents:UIControlEventTouchUpInside];
             cell.titleLabel.text = NSLocalizedString(@"Location", nil);
             break;
         case AudioCallButtonIndex:
-            cell.imageView.image = [UIImage imageNamed:@"icon_menu_chat_action_audio_call"];
+            [cell.imageView setImage:[UIImage imageNamed:@"icon_menu_chat_action_audio_call"] forState:UIControlStateNormal];
+            [cell.imageView addTarget:self action:@selector(audioCallCellClick) forControlEvents:UIControlEventTouchUpInside];
             cell.titleLabel.text = NSLocalizedString(@"Audio call", nil);
             break;
         case VideoCallButtonIndex:
-            cell.imageView.image = [UIImage imageNamed:@"icon_menu_chat_action_video_call"];
+            [cell.imageView setImage:[UIImage imageNamed:@"icon_menu_chat_action_video_call"] forState:UIControlStateNormal];
+            [cell.imageView addTarget:self action:@selector(videoCallCellClick) forControlEvents:UIControlEventTouchUpInside];
             cell.titleLabel.text = NSLocalizedString(@"Video call", nil);
             break;
             
@@ -99,6 +112,11 @@
     switch (indexPath.item) {
         case ImageButtonIndex: {
             if (_imageButtonEnable) {
+                return ButtonSize;
+            }
+        }
+        case CaptureButtonIndex: {
+            if (_captureButtonEnable) {
                 return ButtonSize;
             }
         }
@@ -133,35 +151,32 @@
     return CGSizeZero;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.item) {
-        case ImageButtonIndex: {
-            [_delegate didSelectImageButton];
-            break;
-        }
-        case VideoButtonIndex: {
-            [_delegate didSelectVideoButton];
-            break;
-        }
-        case EmotionButtonIndex: {
-            [_delegate didSelectEmotionButton];
-            break;
-        }
-        case LocationButtonIndex: {
-            [_delegate didSelectLocationButton];
-            break;
-        }
-        case AudioCallButtonIndex: {
-            [_delegate didSelectAudioCallButton];
-            break;
-        }
-        case VideoCallButtonIndex: {
-            [_delegate didSelectVideoCallButton];
-            break;
-        }
-        default:
-            break;
-    }
+- (void)imageCellClick {
+    [_delegate didSelectImageButton];
+}
+
+- (void)captureCellClick {
+    [_delegate didSelectCaptureButton];
+}
+
+- (void)videoCellClick {
+    [_delegate didSelectVideoButton];
+}
+
+- (void)emojiCellClick {
+    [_delegate didSelectEmotionButton];
+}
+
+- (void)locationCellClick {
+    [_delegate didSelectLocationButton];
+}
+
+- (void)audioCallCellClick {
+    [_delegate didSelectAudioCallButton];
+}
+
+- (void)videoCallCellClick {
+    [_delegate didSelectVideoCallButton];
 }
 
 @end

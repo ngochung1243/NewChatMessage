@@ -34,5 +34,5 @@ typedef enum {
 @property(nonatomic) BOOL isMine;
 
 - (void)populateMessage:(NSString *)messageEvent;
-
+- (void)handleAction;
 @end

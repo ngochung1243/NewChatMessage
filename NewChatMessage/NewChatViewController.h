@@ -12,6 +12,9 @@
 #import "HMAudioRecordView.h"
 #import "HMActionBar.h"
 #import "HMBalloonBaseCell.h"
+#import "HMEmotionBar.h"
+#import "HMFooterView.h"
+#import "HMExtraMessageBar.h"
 #import <IGListKit.h>
 
 @class BaloonCell;
@@ -27,17 +30,20 @@
     NSMutableArray* messages;
     NSMutableDictionary *recordSetting;
     BOOL isShowingActionBar;
+    BOOL isShowingEmotionBar;
     IGListAdapter *adapter;
+    
+    //Constraint can change
+    MASConstraint *footerViewBottomConstraint;
 }
 
 @property(strong, nonatomic) HMNavigationBar *navigationBar;
 @property(strong, nonatomic) UITableView *chatTableView;
 @property(strong, nonatomic) UICollectionView *chatCollectionView;
-@property(strong, nonatomic) UIView *footerView;
-@property(strong, nonatomic) UIButton *actionButton;
-@property(strong, nonatomic) UITextView *chatTextView;
-@property(strong, nonatomic) UIButton *sendButton;
+@property(strong, nonatomic) HMFooterView *footerView;
 @property(strong, nonatomic) HMActionBar *actionView;
+@property(strong, nonatomic) HMEmotionBar *emotionView;
 @property(strong, nonatomic) HMAudioRecordView *recordView;
+@property(strong, nonatomic) HMExtraMessageBar *extraView;
 
 @end

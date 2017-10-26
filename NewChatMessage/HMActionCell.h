@@ -10,7 +10,7 @@
 
 @interface HMActionCell: UICollectionViewCell
 
-@property(strong, nonatomic) UIImageView *imageView;
+@property(strong, nonatomic) UIButton *imageView;
 @property(strong, nonatomic) UILabel *titleLabel;
 
 @end

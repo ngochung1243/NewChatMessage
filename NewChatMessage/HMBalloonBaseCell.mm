@@ -14,6 +14,10 @@
     self = [super initWithFrame:frame];
     
     if (self) {
+        [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
+        
         //Layout Subviews
         _avatarView = [[UIImageView alloc] init];
         _avatarView.layer.cornerRadius = AvatarImageSize.height / 2;
@@ -38,8 +42,14 @@
             make.left.mas_equalTo(_messageLabel);
         }];
         
+        //Init gesture
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleAction)];
+        tapGesture.numberOfTapsRequired = 1;
+        [_balloonImageView addGestureRecognizer:tapGesture];
+        [_balloonImageView setUserInteractionEnabled:YES];
+        
         //Init Attributes
-        _isMine = NO;
+        _isMine = YES;
         _cellType = Text;
     }
     return self;
@@ -65,7 +75,7 @@
         [_messageLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(_balloonImageView).offset(5);
             make.right.mas_equalTo(_balloonImageView).offset(-OffsetEdge - 2);
-            make.width.mas_lessThanOrEqualTo(CGRectGetWidth(self.contentView.frame) - (OffsetEdge * 2));
+            make.left.greaterThanOrEqualTo(self.contentView).offset(OffsetEdge);
         }];
     } else {
         [_avatarView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -86,9 +96,18 @@
         [_messageLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(_balloonImageView).offset(5);
             make.left.mas_equalTo(_balloonImageView).offset(OffsetEdge + 5);
-            make.width.mas_lessThanOrEqualTo(CGRectGetWidth(self.contentView.frame) - (OffsetEdge * 2));
+            make.right.lessThanOrEqualTo(self.contentView).offset(-OffsetEdge);
         }];
     }
+}
+
+#pragma mark - Action
+- (void)populateMessage:(NSString *)messageEvent {
+    _messageLabel.text = messageEvent;
+}
+
+- (void)handleAction {
+    NSLog(@"[HM] - Click action");
 }
 
 - (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
@@ -101,9 +120,4 @@
     layoutAttributes.frame = newFrame;
     return layoutAttributes;
 }
-
-- (void)populateMessage:(NSString *)messageEvent {
-    _messageLabel.text = messageEvent;
-}
-
 @end

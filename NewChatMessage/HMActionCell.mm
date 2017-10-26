@@ -16,7 +16,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        _imageView = [[UIImageView alloc] init];
+        _imageView = [[UIButton alloc] init];
         [self.contentView addSubview:_imageView];
         [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentView).offset(OffsetEdge);

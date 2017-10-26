@@ -7,14 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HMBalloonBaseCell.h"
+#import "HMBalloonActionCell.h"
 
-@interface HMBalloonRecordCell : HMBalloonBaseCell <UIGestureRecognizerDelegate> {
+@interface HMBalloonRecordCell : HMBalloonActionCell {
     NSArray *animationImage;
     NSTimer *timer;
     long timerCountdown;
 }
-
-@property(strong, nonatomic) UIImageView *recordImageView;
 
 @end
